@@ -1,0 +1,532 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retention &amp; Churn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --navy:#0b1b3a; --ink:#101828; --body:#475467; --muted:#8593a8;
+  --blue:#1a6dff; --blue-dk:#1450c8; --blue-tint:#eef3fe; --blue-tint2:#f6f9ff;
+  --line:#e4e9f2; --hair:#eef1f6; --white:#fff; --page:#f7f9fc;
+  --good:#0a7d4a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--body);
+  font:16px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.sheet{max-width:1060px;margin:26px auto;background:var(--white);border:1px solid var(--line)}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;color:var(--navy);margin:0;
+  letter-spacing:-.015em}
+p{margin:13px 0}
+strong,b{color:var(--navy);font-weight:600}
+em{font-style:italic}
+a{color:var(--blue-dk);text-decoration:none;font-weight:600}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* ── brand bar ─────────────────────────────────────── */
+.brandbar{display:flex;justify-content:space-between;align-items:center;
+  gap:20px;padding:34px 46px 0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue)}
+.hero .eyebrow{margin-bottom:10px}
+.brandright{display:flex;align-items:center;gap:20px;flex-shrink:0}
+
+
+.logo{display:block;height:30px;width:auto;flex-shrink:0}
+
+/* ── hero ──────────────────────────────────────────── */
+.hero{padding:20px 46px 34px}
+.hero h1{font-size:clamp(32px,4.4vw,44px);font-weight:700;line-height:1.08}
+.hero .lede{margin:16px 0 0;font-size:17px;color:var(--body)}
+
+/* ── page shell / sections ─────────────────────────── */
+main{padding:0 46px}
+.p3sec{padding:56px 0;border-top:1px solid var(--line)}
+.p3sec:first-of-type{border-top:0;padding-top:30px}
+.p3sec .wrap{max-width:none;margin:0;padding:0}
+
+h2{font-size:23px;font-weight:600;margin:0 0 6px;line-height:1.28}
+h3{font-size:17px;font-weight:600;margin:32px 0 0;line-height:1.35}
+h3+p,h3+.tw,h3+ul,h3+ol{margin-top:9px}
+.rule{width:44px;height:3px;background:var(--blue);border-radius:2px;margin:0 0 18px}
+.kick{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blue);margin:0 0 8px}
+.p3sec>.wrap>.kick{margin-top:0;padding-top:52px;border-top:1px solid var(--line)}
+.p3sec>.wrap>.kick:first-child{padding-top:0;border-top:0}
+hr{border:0;border-top:1px solid var(--hair);margin:36px 0 0}
+
+/* ── section banner (intro block) ──────────────────── */
+.banner{margin:0 0 6px}
+.banner h1{font-size:27px;font-weight:600;line-height:1.25;margin:0 0 8px}
+.banner .sub{font-size:16.5px;color:var(--body)}
+.banner p{font-size:16.5px;color:var(--body);margin:0}
+.banner .meta{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--muted);display:flex;gap:14px 30px;flex-wrap:wrap}
+.banner .meta b{color:var(--navy);font-weight:600}
+.banner .read{margin-top:22px;background:var(--blue-tint);border-radius:8px;
+  padding:18px 22px;font-size:14.5px;color:var(--body)}
+.banner .read b{color:var(--navy);font-weight:600}
+.banner .read ul{margin:10px 0 0;padding-left:20px}
+.banner .read li{margin:6px 0;font-size:14.5px}
+
+/* ── lists ─────────────────────────────────────────── */
+ol,ul{margin:14px 0;padding-left:22px}
+li{margin:9px 0}
+li::marker{color:var(--muted)}
+
+/* ── tables ────────────────────────────────────────── */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0 0}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:600px}
+th{text-align:left;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:0 16px 11px 0;border-bottom:1.5px solid var(--line)}
+td{padding:13px 16px 13px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+tr>th:last-child,tr>td:last-child{padding-right:0}
+td[style*="right"]{font-variant-numeric:tabular-nums;white-space:normal}
+tbody tr:last-child td{border-bottom:0}
+.tw+p{font-size:13.5px;color:var(--muted);margin-top:14px}
+
+/* ── on-screen evidence ────────────────────────────── */
+.evwrap{margin:26px 0 0}
+.evlabel{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blue);margin:0 0 16px}
+.evgrid{margin:24px 0 0}
+figure.ev{margin:0 0 22px;background:var(--white);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden}
+figure.ev:last-child{margin-bottom:0}
+figure.ev .shots{display:flex;gap:3px;background:#000;justify-content:center;
+  align-items:flex-start}
+figure.ev .shots img{display:block;width:100%;height:auto;object-fit:contain;max-width:660px}
+figure.ev.pair .shots img{width:50%;max-width:462px}
+.vidid{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);
+  letter-spacing:.02em;padding:10px 16px 0;word-break:break-all}
+.vidid b{color:var(--navy);font-weight:600}
+figure.ev figcaption{padding:8px 16px 16px;font-size:13px;line-height:1.55}
+figure.ev figcaption br{display:none}
+.moment{display:block;font-family:Poppins,Inter,sans-serif;font-weight:600;font-size:14.5px;
+  color:var(--navy);line-height:1.4;margin-bottom:8px}
+.evtext,.onscreen{display:block;font-size:13px;color:var(--body);background:var(--blue-tint2);
+  border-left:3px solid var(--blue);border-radius:0 6px 6px 0;padding:10px 13px;
+  margin:8px 0 0;line-height:1.55}
+.onscreen b,.evtext b{color:var(--navy);font-weight:600}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;padding:3px 9px;border-radius:20px;vertical-align:middle;
+  line-height:1.35;margin:0 0 4px}
+.badge.weak{background:var(--blue-tint);color:var(--blue-dk)}
+
+/* ── footer ────────────────────────────────────────── */
+.p3foot{padding:26px 46px 40px;color:var(--muted);font-size:13px;
+  border-top:1px solid var(--line)}
+
+@media(max-width:760px){
+  .brandbar,.hero,main,.p3foot{padding-left:22px;padding-right:22px}
+  .brandbar{flex-wrap:wrap;gap:12px}
+  figure.ev.pair .shots{flex-wrap:wrap}
+  figure.ev.pair .shots img{width:100%;max-width:660px}
+  .banner .meta{gap:8px 20px}
+  .sheet{margin:0;border-left:0;border-right:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{body{background:#fff}.sheet{border:0;margin:0}figure.ev{break-inside:avoid}}
+
+
+/* navbar */
+.navbar{display:flex;align-items:center;gap:16px;padding:14px 46px;border-bottom:1px solid var(--line);background:var(--white)}
+.navbar .crumbs{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);min-width:0;flex:1}
+.navbar .crumbs a{color:var(--body);font-weight:600;text-decoration:none}
+.navbar .crumbs a:hover{color:var(--blue-dk);text-decoration:underline}
+.navbar .crumbs .sep{color:var(--line)}
+.navbar .crumbs .here{color:var(--navy);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.backlink{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--body);
+  text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:7px 13px;background:var(--white);
+  flex-shrink:0;transition:border-color .14s,color .14s,background .14s}
+.backlink:hover{border-color:var(--blue);color:var(--blue-dk);background:var(--blue-tint);text-decoration:none}
+.navbar .logo{height:26px;width:auto;flex-shrink:0;margin-right:2px}
+@media(max-width:760px){.navbar{padding-left:22px;padding-right:22px;gap:11px}.navbar .crumbs{display:none}}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 46px 44px;background:var(--white)}
+.fgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:start}
+.flab{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.fgrid p{margin:0;font-size:14px;color:var(--body)}
+.fmeta{margin-top:10px!important;font-size:13px!important;color:var(--muted)!important}
+.flinks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.flinks a{font-size:14.5px;color:var(--body);text-decoration:none;font-weight:600;display:inline-flex;gap:8px}
+.flinks a:hover{color:var(--blue-dk);text-decoration:underline}
+.flinks .arrow{color:var(--blue)}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:30px;padding-top:20px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted)}
+.fbot img{height:22px;width:auto}
+@media(max-width:760px){footer{padding-left:22px;padding-right:22px}.fgrid{grid-template-columns:1fr;gap:26px}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ── language switch ───────────────────────────────── */
+.langsw{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  flex-shrink:0;background:var(--white)}
+.langsw button{border:0;background:transparent;color:var(--body);cursor:pointer;
+  font:600 12px/1 Inter,-apple-system,"Segoe UI",sans-serif;padding:9px 13px;
+  transition:background .14s,color .14s}
+.langsw button+button{border-left:1px solid var(--line)}
+.langsw button:hover{color:var(--blue-dk)}
+.langsw button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.langsw button:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+body.ko{font-family:"Noto Sans KR",Inter,-apple-system,"Malgun Gothic",sans-serif;
+  word-break:keep-all}
+body.ko h1,body.ko h2,body.ko h3{font-family:"Noto Sans KR",Poppins,sans-serif;
+  letter-spacing:-.02em}
+body.ko .langsw button{font-family:"Noto Sans KR",Inter,sans-serif}
+@media print{.langsw{display:none}}
+
+/* ── evidence strip ────────────────────────────────── */
+.evbox{margin-top:26px}
+.evlab{font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:12px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.evhint{font-weight:400;letter-spacing:0;text-transform:none;font-size:12.5px;color:var(--muted)}
+.evstrip{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}
+.evtile{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  cursor:zoom-in;background:#000;aspect-ratio:16/9;
+  transition:border-color .14s,transform .14s,box-shadow .14s}
+.evtile:hover,.evtile:focus-visible{border-color:var(--blue);transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(26,109,255,.18);outline:none}
+.evtile img{width:100%;height:100%;object-fit:cover;display:block}
+.evtile .num{position:absolute;top:6px;left:6px;background:rgba(11,27,58,.86);color:#fff;
+  font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:4px;letter-spacing:.02em}
+figure.lb-src{display:none}
+
+/* ── lightbox ──────────────────────────────────────── */
+.lb{position:fixed;inset:0;z-index:9999;background:rgba(8,14,24,.94);display:none;
+  align-items:center;justify-content:center;flex-direction:column;padding:28px 64px 20px}
+.lb.open{display:flex}
+.lb>img{max-width:100%;max-height:calc(100vh - 160px);object-fit:contain;border-radius:6px;
+  background:#000;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+.lb-cap{color:#e6ebf2;font-size:14px;line-height:1.55;max-width:900px;text-align:center;
+  margin-top:16px}
+.lb-cap a{color:#7ab9ff}
+.lb-cap b:first-child,.lb-cap strong:first-child{display:block;margin-bottom:6px;color:#fff;font-size:15px}
+.lb-count{position:absolute;top:20px;left:26px;color:#9fb0c4;font-size:12.5px;letter-spacing:.06em}
+.lb-x,.lb-prev,.lb-next{position:absolute;background:rgba(255,255,255,.1);border:0;color:#fff;
+  cursor:pointer;border-radius:8px;display:grid;place-items:center;transition:background .14s}
+.lb-x:hover,.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.22)}
+.lb-x{top:16px;right:20px;width:38px;height:38px;font-size:20px;line-height:1}
+.lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:44px;height:64px;font-size:24px}
+.lb-prev{left:12px} .lb-next{right:12px}
+@media(max-width:760px){.lb{padding:16px 12px}.lb-prev,.lb-next{width:36px;height:52px}}
+@media print{.lb{display:none!important}.evbox{display:none}figure.lb-src{display:block}}
+</style></head><body>
+<div class="sheet">
+
+<div class="navbar">
+    <img class="logo" src="6labs-logo.png" alt="6labs.ai">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Pilot report</a><span class="sep">/</span><span class="here" data-kr="리텐션 및 이탈 분석">Retention and churn</span></nav>
+    <div class="langsw" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ko" aria-pressed="false">KR</button></div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow" data-kr="MapleStory: Idle RPG &amp;times; Oracle">MapleStory: Idle RPG &times; Oracle</div>
+    <h1 data-kr="리텐션 &amp;amp; 이탈">Retention &amp; Churn</h1>
+    <p class="lede" data-kr="신규 유저가 어디서 이탈하는지, 이탈 직전 어떤 행동을 보이는지 &amp;mdash; 실제 녹화 영상을 통해 모두 검증했습니다.">Where new players drop off, how they behave before they quit &mdash; each proven on real recordings.</p>
+  </div>
+
+  <main>
+  <section class="p3s1 p3sec"><div class="wrap">
+<div class="banner"><div class="kick" data-kr="섹션 1">Section 1</div>
+<h1 data-kr="신규 유저가 멈추는 지점과 그 원인">Where new players stop, and what holds them up</h1>
+<div class="rule"></div>
+</div>
+
+<h2 id="what-this-is" data-kr="개요">What this is</h2>
+<div class="rule"></div>
+<p data-kr="MapleStory RPG Idle을 최초로 설치한 361명의 플레이 영상을 녹화했습니다. 각 세션은 최초 100개의 가이드 퀘스트를 기준으로 퀘스트별 추적을 진행했습니다. 이 상한선은 게임의 동일한 구간에 걸쳐 공통의 비교 기준을 제공합니다. 이를 통해 소요 시간, 정체 구간, 유저 행동을 개인별로 비교할 수 있습니다. 유저가 실제로 플레이한 최종 범위를 제한하는 것은 아닙니다.">361 people who installed MapleStory RPG Idle for the first time were recorded playing it. Each session was followed quest by quest through the first hundred guide quests. This cap provides a shared comparison window across the same stretch of the game. It allows time spent, stuck points, and player actions to be compared person to person. It does not limit how far players actually played.</p>
+<p data-kr="녹화 데이터 분석 후 Nexon에서 해당 계정들의 잔존 여부를 제공했습니다. 이후 103명은 이탈했고 74명은 잔존했습니다. 모든 비교 분석에는 이 177명의 유저 데이터만 사용되었습니다. 녹화된 나머지 184명의 유저는 문제점 섹션에서 다룹니다.">Nexon supplied retention status for these accounts after the recordings were read. 103 players later churned and 74 stayed active. Those 177 are the only players used in any comparison. The other 184 recorded players appear in the problems section.</p>
+<p data-kr="모든 수치에는 기준 모수가 명시되어 있습니다. 모든 분석 내용은 근거가 되는 영상의 초 단위 구간 링크를 포함합니다. 녹화 종료는 캡처가 중단된 것이지 유저의 이탈을 의미하지 않습니다. 본 보고서는 녹화 종료를 결코 이탈로 간주하지 않습니다.">Every number says what it is out of. Every claim links to the second of footage behind it. A recording ending is capture stopping, not a player leaving. This report never treats an ended recording as a departure.</p>
+<p data-kr="유저 이탈은 단일 퀘스트보다는 초기 10개 퀘스트 및 퀘스트 51~100 구간에 집중됩니다. 초반 튜토리얼 단계는 원활하게 진행되지만, 후반 돌파 단계에서는 액티브 전투에 중앙값 기준 최대 1680초가 소요됩니다. 이탈 유저와 잔존 유저는 동일하게 거친 모든 퀘스트 마일스톤에서 전투 스탯, 진행 속도, 패배 횟수가 동일하게 나타납니다.">Player drop-off concentrates in the first ten quests and again between quests 51 to 100 rather than at a single quest. Early tutorial steps run cleanly, but late breakthrough stages take up to 1680 median seconds of active combat. Churned and active players display identical combat stats, progression speed, and loss counts at every shared quest milestone.</p>
+<div class="kick">1.1</div>
+<h2 id="where-new-players-stop-first" data-kr="신규 유저가 처음 멈추는 구간">Where new players stop first</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;유저 이탈은 단일 퀘스트보다는 초기 10개 퀘스트 및 퀘스트 51~100 구간에 집중됩니다.&lt;/strong&gt;"><strong>Player drop-off concentrates in the first ten quests and again between quests 51 to 100 rather than at a single quest.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup><thead><tr><th data-kr="퀘스트 구간">Quest band</th><th data-kr="이탈 유저">Churned players</th><th data-kr="잔존 유저">Active players</th></tr></thead><tbody><tr><td data-kr="식별 가능한 퀘스트 없음">No quest identifiable</td><td data-kr="이탈 유저 103명 중 18명">18 of 103 churned players</td><td data-kr="잔존 유저 74명 중 7명">7 of 74 active players</td></tr><tr><td data-kr="퀘스트 1~10">Quest 1 to 10</td><td data-kr="이탈 유저 103명 중 25명">25 of 103 churned players</td><td data-kr="잔존 유저 74명 중 8명">8 of 74 active players</td></tr><tr><td data-kr="퀘스트 11~25">Quest 11 to 25</td><td data-kr="이탈 유저 103명 중 6명">6 of 103 churned players</td><td data-kr="잔존 유저 74명 중 1명">1 of 74 active players</td></tr><tr><td data-kr="퀘스트 26~50">Quest 26 to 50</td><td data-kr="이탈 유저 103명 중 17명">17 of 103 churned players</td><td data-kr="잔존 유저 74명 중 11명">11 of 74 active players</td></tr><tr><td data-kr="퀘스트 51~100">Quest 51 to 100</td><td data-kr="이탈 유저 103명 중 35명">35 of 103 churned players</td><td data-kr="잔존 유저 74명 중 40명">40 of 74 active players</td></tr><tr><td data-kr="퀘스트 100 이후">Past quest 100</td><td data-kr="이탈 유저 103명 중 2명">2 of 103 churned players</td><td data-kr="잔존 유저 74명 중 7명">7 of 74 active players</td></tr></tbody></table></div>
+<ul><li data-kr="단일 퀘스트 하나만으로 유저가 멈추는 경우는 없습니다. 퀘스트 1에서는 이탈 유저 103명 중 13명, 잔존 유저 74명 중 4명이 멈췄습니다.">No single quest stops players on its own. Quest 1 stopped 13 of 103 churned players and 4 of 74 active players.</li><li data-kr="첫 번째 격차는 튜토리얼 초반부터 벌어집니다. 퀘스트 1~10 구간에서 잔존 유저는 74명 중 8명이 멈춘 반면, 이탈 유저는 103명 중 25명이 멈췄습니다.">The first gap opens early in the tutorial. In Quest 1 to 10, 25 of 103 churned players stopped compared to 8 of 74 active players.</li><li data-kr="Vision 분석 과정에서 화면의 일부 퀘스트 배너가 누락되었습니다. 이로 인해 이탈 유저 103명 중 18명, 잔존 유저 74명 중 7명은 기록된 퀘스트가 없는 상태로 남았습니다.">Vision passes miss some quest banners on screen. This leaves 18 of 103 churned players and 7 of 74 active players without a recorded quest.</li><li data-kr="가장 많은 이탈은 퀘스트 51~100 구간에 집중됩니다. 이 구간에서 잔존 유저는 74명 중 40명이 통과한 반면, 이탈 유저는 103명 중 35명이 멈췄습니다.">The largest volume of drop-off concentrates between Quest 51 and 100. In this band, 35 of 103 churned players stopped compared to 40 of 74 active players who pushed through.</li><li data-kr="중반부 이탈은 단일 퀘스트 실패보다는 스테이지 보스와의 반복적인 전투 패배 이후 발생합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/IR2MDKJJLRmsT7EFuviDV?t=817&quot;&gt;open clip&lt;/a&gt;.">Mid-game departures happen after repeated combat losses against stage bosses rather than a single quest failure <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/IR2MDKJJLRmsT7EFuviDV?t=817">open clip</a>.</li></ul>
+<p data-kr="Nexon은 유저들의 지속적인 진행을 위해 퀘스트 51~100 구간의 보스 전투 난이도를 완화할 수 있습니다.">Nexon could soften boss combat difficulty between quests 51 and 100 to keep players progressing.</p>
+<div class="kick">1.2</div>
+<h2 id="which-steps-players-struggle-with-most" data-kr="유저가 가장 어려움을 겪는 단계">Which steps players struggle with most</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;대부분의 튜토리얼 단계는 원활하게 진행되지만, 후반부의 일부 돌파 단계에서는 극심한 반복 플레이(grind)가 발생합니다.&lt;/strong&gt;"><strong>Most tutorial steps run cleanly, but a few late breakthrough stages create heavy grinds.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup><thead><tr><th data-kr="목표 텍스트">Objective text</th><th data-kr="해당 단계의 이탈 유저">Churned players on step</th><th data-kr="해당 단계의 잔존 유저">Active players on step</th><th data-kr="여기서 멈춘 이탈 유저">Churned players who stopped here</th></tr></thead><tbody><tr><td data-kr="Breakthrough Ellinia - 10: 0/1">Breakthrough Ellinia - 10: 0/1</td><td data-kr="이탈 유저 103명 중 14명">14 of 103 churned players</td><td data-kr="잔존 유저 74명 중 17명">17 of 74 active players</td><td data-kr="이탈 유저 103명 중 8명">8 of 103 churned players</td></tr><tr><td data-kr="Breakthrough Ellinia - 9: 0/1">Breakthrough Ellinia - 9: 0/1</td><td data-kr="이탈 유저 103명 중 6명">6 of 103 churned players</td><td data-kr="잔존 유저 74명 중 18명">18 of 74 active players</td><td data-kr="이탈 유저 103명 중 2명">2 of 103 churned players</td></tr><tr><td data-kr="Defeat the Chapter 2 boss: 0/1">Defeat the Chapter 2 boss: 0/1</td><td data-kr="이탈 유저 103명 중 12명">12 of 103 churned players</td><td data-kr="잔존 유저 74명 중 15명">15 of 74 active players</td><td data-kr="이탈 유저 103명 중 1명">1 of 103 churned players</td></tr><tr><td data-kr="Breakthrough Henesys - 6">Breakthrough Henesys - 6</td><td data-kr="이탈 유저 103명 중 10명">10 of 103 churned players</td><td data-kr="잔존 유저 74명 중 15명">15 of 74 active players</td><td data-kr="이탈 유저 103명 중 2명">2 of 103 churned players</td></tr><tr><td data-kr="Breakthrough Ellinia - 4">Breakthrough Ellinia - 4</td><td data-kr="이탈 유저 103명 중 4명">4 of 103 churned players</td><td data-kr="잔존 유저 74명 중 14명">14 of 74 active players</td><td data-kr="이탈 유저 103명 중 0명">0 of 103 churned players</td></tr><tr><td data-kr="Breakthrough Ellinia - 5">Breakthrough Ellinia - 5</td><td data-kr="이탈 유저 103명 중 6명">6 of 103 churned players</td><td data-kr="잔존 유저 74명 중 12명">12 of 74 active players</td><td data-kr="이탈 유저 103명 중 0명">0 of 103 churned players</td></tr></tbody></table></div>
+<ul><li data-kr="Breakthrough Ellinia - 10: 0/1은 가장 난이도가 높은 단계입니다. 이탈 유저 103명 중 14명, 잔존 유저 74명 중 17명이 이 단계에 도달했습니다. 보스 Faust는 전투 시간 초과로 플레이어를 반복해서 패배시킵니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/KidxReZUZpKQpOliNnCCr?t=741&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 103명 중 8명은 이 단계에서 기록된 진행이 종료되었습니다.">Breakthrough Ellinia - 10: 0/1 is the hardest step. It was reached by 14 of 103 churned players and 17 of 74 active players. Boss Faust repeatedly defeats players on combat timeouts <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/KidxReZUZpKQpOliNnCCr?t=741">open clip</a>. Recorded progress ended on this step for 8 of 103 churned players.</li><li data-kr="Breakthrough Ellinia - 9: 0/1은 급격한 전투력 검증 구간을 형성합니다. 이탈 유저 103명 중 6명, 잔존 유저 74명 중 18명이 이 단계에 도달했습니다. 스테이지 보스는 데미지가 부족할 때 캐릭터를 처치합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/SWBKg5j0xF1wBYq2iTrpH?t=746&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 103명 중 2명은 여기서 기록된 진행이 종료되었습니다.">Breakthrough Ellinia - 9: 0/1 creates a steep combat check. It was reached by 6 of 103 churned players and 18 of 74 active players. Stage bosses defeat characters when damage output falls behind <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/SWBKg5j0xF1wBYq2iTrpH?t=746">open clip</a>. Recorded progress ended here for 2 of 103 churned players.</li><li data-kr="Defeat the Chapter 2 boss: 0/1은 주요 보스 벽을 형성합니다. 이탈 유저 103명 중 12명, 잔존 유저 74명 중 15명이 이 단계에 도달했습니다. 플레이어가 보스를 처치하기 전에 전투 타이머가 종료됩니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/7YHSJsEOsSLq3vvqkCojI?t=320&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 103명 중 1명은 여기서 기록된 진행이 종료되었습니다.">Defeat the Chapter 2 boss: 0/1 creates a major boss wall. It was reached by 12 of 103 churned players and 15 of 74 active players. The combat timer runs out before players can finish the boss <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/7YHSJsEOsSLq3vvqkCojI?t=320">open clip</a>. Recorded progress ended here for 1 of 103 churned players.</li><li data-kr="Breakthrough Henesys - 6은 적들이 플레이어를 압도하는 초반 체크포인트입니다. 이탈 유저 103명 중 10명, 잔존 유저 74명 중 15명이 이 단계에 도달했습니다. 받는 피해로 인해 체력이 소진되면서 플레이어는 스테이지에 실패합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/mXCM7pTwbBb8QpS09opPs?t=171&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 103명 중 2명은 이 단계에서 기록된 진행이 종료되었습니다.">Breakthrough Henesys - 6 is an earlier checkpoint where enemies overpower players. It was reached by 10 of 103 churned players and 15 of 74 active players. Players fail the stage when incoming damage drains their health <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/mXCM7pTwbBb8QpS09opPs?t=171">open clip</a>. Recorded progress ended on this step for 2 of 103 churned players.</li><li data-kr="이와 대조적으로, 초반 튜토리얼 퀘스트는 별다른 허들 없이 통과됩니다. Defeat enemies: 0/3에는 이탈 유저 103명 중 58명, 잔존 유저 74명 중 42명이 도달했습니다. Enhance stats: 0/1에는 이탈 유저 103명 중 29명, 잔존 유저 74명 중 27명이 도달했습니다. 거의 모든 플레이어가 이러한 간단한 퀘스트를 첫 시도에 완료합니다.">In contrast, early tutorial tasks pass without friction. Defeat enemies: 0/3 was reached by 58 of 103 churned players and 42 of 74 active players. Enhance stats: 0/1 was reached by 29 of 103 churned players and 27 of 74 active players. Nearly every player clears these simple tasks on the first try.</li></ul>
+<p data-kr="Nexon은 전투 시간 초과를 방지하기 위해 챕터 후반 돌파 스테이지의 보스 체력을 낮추는 방안을 검토할 수 있습니다.">Nexon could lower boss health in late chapter breakthrough stages to prevent combat timeouts.</p>
+<div class="kick">1.3</div>
+<h2 id="how-long-each-step-takes" data-kr="각 단계별 소요 시간">How long each step takes</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;초반 튜토리얼 단계는 수 초 만에 완료되지만, 후반 돌파 스테이지는 활성 전투 시간 중앙값이 최대 1680초까지 소요됩니다.&lt;/strong&gt;"><strong>Early tutorial steps finish in seconds, but late breakthrough stages take up to 1680 median seconds of active combat.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:20%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup><thead><tr><th data-kr="퀘스트">Quest</th><th data-kr="목표">Objective</th><th data-kr="중앙값(초)">Median Seconds</th><th data-kr="방치 시간 중앙값(초)">Median Idle Seconds</th><th data-kr="해당 단계 이탈 유저">Churned Players on Step</th><th data-kr="해당 단계 잔존 유저">Active Players on Step</th></tr></thead><tbody><tr><td>2</td><td data-kr="Enhance stats: 0/1">Enhance stats: 0/1</td><td>15</td><td>0</td><td data-kr="이탈 유저 103명 중 29명">29 of 103 churned players</td><td data-kr="잔존 유저 74명 중 27명">27 of 74 active players</td></tr><tr><td>3</td><td data-kr="Summon an Elite Monster: 0/1">Summon an Elite Monster: 0/1</td><td>15</td><td>0</td><td data-kr="이탈 유저 103명 중 27명">27 of 103 churned players</td><td data-kr="잔존 유저 74명 중 26명">26 of 74 active players</td></tr><tr><td>1</td><td data-kr="적 처치: 0/3">Defeat enemies: 0/3</td><td>34</td><td>0</td><td data-kr="이탈 유저 103명 중 58명">58 of 103 churned players</td><td data-kr="잔존 유저 74명 중 42명">42 of 74 active players</td></tr><tr><td>71</td><td data-kr="Breakthrough Ellinia - 4">Breakthrough Ellinia - 4</td><td>373</td><td>0</td><td data-kr="이탈 유저 103명 중 4명">4 of 103 churned players</td><td data-kr="잔존 유저 74명 중 14명">14 of 74 active players</td></tr><tr><td>75</td><td data-kr="Breakthrough Ellinia - 5">Breakthrough Ellinia - 5</td><td>507</td><td>0</td><td data-kr="이탈 유저 103명 중 6명">6 of 103 churned players</td><td data-kr="잔존 유저 74명 중 12명">12 of 74 active players</td></tr><tr><td>91</td><td data-kr="Breakthrough Ellinia - 9: 0/1">Breakthrough Ellinia - 9: 0/1</td><td>1196</td><td>0</td><td data-kr="이탈 유저 103명 중 6명">6 of 103 churned players</td><td data-kr="잔존 유저 74명 중 18명">18 of 74 active players</td></tr><tr><td>95</td><td data-kr="Breakthrough Ellinia - 10: 0/1">Breakthrough Ellinia - 10: 0/1</td><td>1680</td><td>81</td><td data-kr="이탈 유저 103명 중 14명">14 of 103 churned players</td><td data-kr="잔존 유저 74명 중 17명">17 of 74 active players</td></tr></tbody></table></div>
+<ul><li data-kr="초반 튜토리얼 단계는 빠르게 완료됩니다. Quest 2와 Quest 3은 각각 중앙값 기준 15초가 소요됩니다. Quest 1은 중앙값 기준 34초가 걸립니다. 반면, Quest 91은 중앙값 기준 1196초가 소요됩니다. Quest 95는 중앙값 기준 1680초가 소요됩니다.">Early tutorial steps finish quickly. Quest 2 and Quest 3 each require 15 median seconds. Quest 1 takes 34 median seconds. In contrast, Quest 91 takes 1196 median seconds. Quest 95 takes 1680 median seconds.</li><li data-kr="체류 시간은 방치 시간보다는 능동적인 플레이로 구성됩니다. Quest 71, Quest 75, Quest 91은 각각 중앙값 기준 방치 시간 0초를 기록했습니다. Quest 95는 중앙값 기준 방치 시간 81초를 기록했습니다. 유저는 방치하기보다 적극적으로 전투를 진행하고 스테이지에 재도전합니다.">Dwell time consists of active play rather than idle time. Quest 71, Quest 75, and Quest 91 each record 0 median idle seconds. Quest 95 records 81 median idle seconds. Players actively fight and retry stages instead of idling.</li><li data-kr="진행이 가장 느린 퀘스트는 모두 챕터 돌파 스테이지입니다. Quest 67, 71, 75, 79, 83, 87, 91, 95는 모두 Ellinia 스테이지 클리어를 요구합니다. 해당 스테이지에서 유저는 엄격한 스테이지 타이머가 적용된 높은 체력의 보스를 상대하게 됩니다. 유저는 이 보스들에서 시간 초과로 인한 패배를 반복해서 경험합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/KidxReZUZpKQpOliNnCCr?t=741&quot;&gt;open clip&lt;/a&gt;.">The slowest quests are all chapter breakthrough stages. Quests 67, 71, 75, 79, 83, 87, 91, and 95 all require clearing Ellinia stages. These stages pit players against high-health bosses with strict stage timers. Players encounter repeated timeout defeats on these bosses <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/KidxReZUZpKQpOliNnCCr?t=741">open clip</a>.</li><li data-kr="보스 허들은 유저가 이탈하거나 정체되는 마찰 구간을 형성합니다. Quest 95에서는 이탈 유저 103명 중 8명, 잔존 유저 74명 중 6명이 멈춥니다. Quest 91에서는 이탈 유저 103명 중 2명, 잔존 유저 74명 중 4명이 멈춥니다. 유저는 이러한 보스 스탯 장벽을 극복하기 위해 던전 파밍과 소환을 진행해야 합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/4vYmuFGfRo8HskU08Zysv?t=82&quot;&gt;open clip&lt;/a&gt;.">Boss walls create friction where players stop. On Quest 95, 8 of 103 churned players and 6 of 74 active players stop. On Quest 91, 2 of 103 churned players and 4 of 74 active players stop. Players must farm dungeons and summons to overcome these boss stat walls <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/4vYmuFGfRo8HskU08Zysv?t=82">open clip</a>.</li><li data-kr="퀘스트 이전 설정 단계는 상당한 방치 시간이 발생하는 유일한 단계입니다. Quest 0은 중앙값 기준 353초 및 방치 시간 190초를 기록했습니다. 대용량 에셋 다운로드로 인해 유저는 본격적인 플레이가 시작되기 전 대기해야 합니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/QBeaLwwQDqNCRjwB5QsJx?t=7&quot;&gt;open clip&lt;/a&gt;. Quest 0에서 이탈 유저 103명 중 18명, 잔존 유저 74명 중 9명이 멈춥니다.">Pre-quest setup is the only step with substantial idle time. Quest 0 records 353 median seconds and 190 median idle seconds. Large asset downloads force players to wait before active play begins <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/QBeaLwwQDqNCRjwB5QsJx?t=7">open clip</a>. At Quest 0, 18 of 103 churned players and 9 of 74 active players stop.</li></ul>
+<p data-kr="넥슨은 Ellinia 돌파 스테이지의 보스 체력을 낮춰 장시간 지속되는 전투 실패 루프를 완화할 수 있습니다.">Nexon could lower boss health in Ellinia breakthrough stages to reduce long combat failure loops.</p>
+</div></section>
+
+<section class="p3s2 p3sec"><div class="wrap">
+<div class="banner">
+<div class="kick" data-kr="섹션 2">Section 2</div>
+<h1 data-kr="유저들의 실제 플레이 방식과 이탈 패턴">How players actually play, and how they leave</h1>
+<div class="rule"></div>
+<div class="read"><b>Before/after pairs</b> show a change — e.g. a boss lost, then the same boss won after the player upgraded. <b>Existence-level:</b> a frame proves the moment happened on screen for a recorded player. It is not a whole-population percentage — those come from the warehouse tables in the text.</div>
+</div>
+<div class="kick">2.1</div>
+<h2 id="how-the-two-groups-play" data-kr="두 그룹의 플레이 방식">How the two groups play</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;공통으로 도달한 모든 퀘스트 마일스톤에서, 이탈 유저와 잔존 유저는 동일한 전투 스탯, 진행 속도, 패배 횟수를 보입니다.&lt;/strong&gt;"><strong>At every shared quest milestone, churned and active players display identical combat stats, progression speed, and loss counts.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:10%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"></colgroup><thead><tr><th data-kr="퀘스트">Quest</th><th data-kr="이탈 유저">Churned Players</th><th data-kr="잔존 유저">Active Players</th><th data-kr="이탈 유저 레벨">Churned Level</th><th data-kr="잔존 유저 레벨">Active Level</th><th data-kr="이탈 유저 전투력">Churned Power</th><th data-kr="잔존 유저 전투력">Active Power</th><th data-kr="이탈 유저 플레이 시간(분)">Churned Minutes</th><th data-kr="잔존 유저 플레이 시간(분)">Active Minutes</th><th data-kr="이탈 유저 패배 수">Churned Lost</th><th data-kr="잔존 유저 패배 수">Active Lost</th></tr></thead><tbody><tr><td>1</td><td>65 of 103</td><td>50 of 74</td><td>1</td><td>1</td><td>167</td><td>167</td><td>4</td><td>3</td><td>0</td><td>0</td></tr><tr><td>5</td><td>29 of 103</td><td>27 of 74</td><td>3</td><td>3</td><td>214</td><td>207</td><td>4</td><td>5</td><td>0</td><td>0</td></tr><tr><td>10</td><td>9 of 103</td><td>12 of 74</td><td>6</td><td>6</td><td>340</td><td>329</td><td>9</td><td>11</td><td>0</td><td>0</td></tr><tr><td>20</td><td>19 of 103</td><td>22 of 74</td><td>9</td><td>9</td><td>727</td><td>642</td><td>18</td><td>15</td><td>0</td><td>0</td></tr><tr><td>35</td><td>19 of 103</td><td>34 of 74</td><td>13</td><td>14</td><td>1818</td><td>1739</td><td>25</td><td>24</td><td>0</td><td>1</td></tr><tr><td>50</td><td>13 of 103</td><td>20 of 74</td><td>19</td><td>19</td><td>6364</td><td>5684</td><td>53</td><td>46</td><td>2</td><td>3</td></tr><tr><td>75</td><td>10 of 103</td><td>22 of 74</td><td>24</td><td>24</td><td>21534</td><td>22271</td><td>85</td><td>76</td><td>6</td><td>6</td></tr></tbody></table></div>
+<ul><li data-kr="두 그룹 모두 서브 메뉴를 열기 전에 초반 스테이지를 밀기 위해 자동 전투에 의존합니다. 잔존 유저 8ab6b474는 즉시 자동 전투를 사용해 스테이지를 진행했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/tfwl7pKV5PuJYVIrbqezo?t=186&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 678224a8 역시 메인 스테이지를 자동 클리어하며 전투 진행에 직접적으로 의존했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/BCBsX95vVmnO7ccQxgCRP?t=541&quot;&gt;open clip&lt;/a&gt;.">Both groups rely on auto-combat to push early stages before opening submenus. Active player 8ab6b474 pushed stages using auto-combat immediately <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/tfwl7pKV5PuJYVIrbqezo?t=186">open clip</a>. Churned player 678224a8 also relied directly on combat progression and auto-clearing main stages <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/BCBsX95vVmnO7ccQxgCRP?t=541">open clip</a>.</li><li data-kr="유저는 메뉴를 확인하기보다 실패한 전투에 즉시 재도전하는 경우가 많습니다. 잔존 유저 1aa38b6b는 스테이지 패배 후 즉시 전투에 재도전했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/NeyeUQXXj5hXIBs2TfpXv?t=165&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 8ba9e2f7은 스테이지를 벗어나지 않고 즉시 전투에 재도전했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/XdSxcCG6chnY4SgRHB8qh?t=369&quot;&gt;open clip&lt;/a&gt;.">Players often retry failed encounters immediately rather than reading menus. Active player 1aa38b6b retried combat immediately after a stage loss <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/NeyeUQXXj5hXIBs2TfpXv?t=165">open clip</a>. Churned player 8ba9e2f7 retried combat immediately without leaving the stage <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/XdSxcCG6chnY4SgRHB8qh?t=369">open clip</a>.</li><li data-kr="반복된 전투 실패 시 두 그룹의 유저 모두 무기와 캐릭터 스탯을 업그레이드합니다. 잔존 유저 8e12efd0은 패배 후 무기를 소환하고 활을 업그레이드했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/raY9xv1KTRcMwOBWJnlop?t=363&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 a77eea98은 보스전 실패 후 스탯을 업그레이드하고 장비를 분해했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/TXmkTH6K2iKaQR0ZhLq8D?t=171&quot;&gt;open clip&lt;/a&gt;.">When repeated combat fails, players in both groups upgrade weapons and character stats. Active player 8e12efd0 summoned weapons and upgraded their bow after defeat <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/raY9xv1KTRcMwOBWJnlop?t=363">open clip</a>. Churned player a77eea98 upgraded stats and dismantled gear after failing boss fights <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/TXmkTH6K2iKaQR0ZhLq8D?t=171">open clip</a>.</li><li data-kr="보스 허들에 직면했을 때 두 그룹의 유저 모두 전투력을 높이기 위해 스타터 팩을 구매합니다. 잔존 유저 ff211983은 스테이지 패배 후 Welcome Epic Weapon 번들을 구매했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/aEVk39UOTPqVga1snT78U?t=577&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 5f82220a는 스테이지 실패 후 Welcome Epic Weapon 패키지를 구매했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/7YHSJsEOsSLq3vvqkCojI?t=320&quot;&gt;open clip&lt;/a&gt;.">Facing boss walls, players in both groups purchase starter packs to boost power. Active player ff211983 bought the Welcome Epic Weapon bundle after a stage loss <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/aEVk39UOTPqVga1snT78U?t=577">open clip</a>. Churned player 5f82220a purchased the Welcome Epic Weapon package after failing a stage <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/7YHSJsEOsSLq3vvqkCojI?t=320">open clip</a>.</li><li data-kr="핵심 업그레이드 시스템은 두 그룹 전반에서 거의 동일한 도입률을 보입니다. 스탯 업그레이드는 이탈 유저 103명 중 91명, 잔존 유저 74명 중 71명이 사용했습니다. 장비 관리는 이탈 유저 103명 중 83명, 잔존 유저 74명 중 69명이 사용했습니다. 소환은 이탈 유저 103명 중 82명, 잔존 유저 74명 중 69명이 사용했습니다. 보스전은 이탈 유저 103명 중 80명, 잔존 유저 74명 중 71명이 이용했습니다.">Core upgrade systems show nearly identical adoption rates across both groups. Stat upgrades were used by 91 of 103 churned players and 71 of 74 active players. Gear management was used by 83 of 103 churned players and 69 of 74 active players. Summoning was used by 82 of 103 churned players and 69 of 74 active players. Boss fights were used by 80 of 103 churned players and 71 of 74 active players.</li></ul>
+<p data-kr="넥슨은 초반 스테이지 보스 타이머를 완화하여 유저의 정체를 방지할 수 있습니다.">Nexon could ease early stage boss timers to keep players from stalling.</p>
+<div class="kick">2.2</div>
+<h2 id="what-the-last-recorded-minutes-look-like" data-kr="마지막 기록 시점의 양상">What the last recorded minutes look like</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;대부분의 녹화본은 캡처 종료로 인해 진행 도중 끝나지만, 이탈 유저는 방치, 종료 또는 조기 이탈을 보이며 차이를 나타냅니다.&lt;/strong&gt;"><strong>Most recordings end mid-progress because capture stops, but churned players separate by idling, quitting, or bouncing early.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup><thead><tr><th data-kr="마지막 기록 시점의 상태">Last recorded state</th><th data-kr="이탈 유저 (103명 중)">Churned players (out of 103)</th><th data-kr="잔존 유저 (74명 중)">Active players (out of 74)</th></tr></thead><tbody><tr><td data-kr="여전히 진행 중">Still moving forward</td><td>63 of 103</td><td>64 of 74</td></tr><tr><td data-kr="방치 또는 절전 모드">Idle or in sleep mode</td><td>17 of 103</td><td>4 of 74</td></tr><tr><td data-kr="로그아웃 또는 종료를 통해 게임 종료">Closed the game through logout or exit</td><td>11 of 103</td><td>3 of 74</td></tr><tr><td data-kr="여정을 보여주기에 너무 짧음">Too short to show a journey</td><td>9 of 103</td><td>0 of 74</td></tr><tr><td data-kr="플레이 중이나 진행되지 않음">Playing but not advancing</td><td>1 of 103</td><td>3 of 74</td></tr><tr><td data-kr="화면 상 특정 요소에 막힘">Stuck at something on screen</td><td>2 of 103</td><td>0 of 74</td></tr></tbody></table></div>
+<ul><li data-kr="이탈 유저 103명 중 63명, 잔존 유저 74명 중 64명의 경우 진행 도중 캡처가 중단되었습니다.">Capture stopped mid-progress for 63 of 103 churned players and 64 of 74 active players.</li><li data-kr="이탈 유저 103명 중 17명이 절전 모드로 진입한 반면, 잔존 유저는 74명 중 4명에 불과했습니다.">Drifting into sleep mode marked 17 of 103 churned players compared to 4 of 74 active players.</li><li data-kr="이탈 유저 103명 중 11명과 잔존 유저 74명 중 3명은 의도적인 게임 종료로 세션을 마쳤습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/VFDo1id9xL1XEHaGiRZhR?t=35&quot;&gt;open clip&lt;/a&gt;.">Deliberate quits ended sessions for 11 of 103 churned players and 3 of 74 active players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/VFDo1id9xL1XEHaGiRZhR?t=35">open clip</a>.</li><li data-kr="이탈 유저 103명 중 9명과 잔존 유저 74명 중 0명은 세션이 여정을 보여주기에 너무 짧았습니다.">Sessions were too short to show a journey for 9 of 103 churned players and 0 of 74 active players.</li><li data-kr="해결되지 않은 화면 막힘 현상으로 인해 이탈 유저 103명 중 2명과 잔존 유저 74명 중 0명의 진행이 중단되었습니다.">Unresolved screen blocks stopped 2 of 103 churned players and 0 of 74 active players.</li></ul>
+<p data-kr="Nexon은 클라이언트가 절전 모드로 진입하기 전에 오프라인 보상 미리보기를 제공하는 방안을 고려할 수 있습니다.">Nexon could show an offline reward preview before the client enters sleep mode.</p>
+<div class="kick">2.3</div>
+<h2 id="what-players-do-after-the-game-does-something" data-kr="게임 동작 이후 유저의 행동">What players do after the game does something</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;유저는 일상적인 업그레이드 루프는 쉽게 완결하지만, 전투 패배 및 구매 유도 루프는 완결하지 못하는 경우가 빈번합니다.&lt;/strong&gt;"><strong>Players easily finish routine upgrade loops, but lost fights and purchase prompts frequently fail to close.</strong></p>
+<div class="tw"><table style="display:table;width:100%;table-layout:fixed"><colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup><thead><tr><th data-kr="기획된 루프">Designed loop</th><th data-kr="루프를 완결하지 못한 이탈 유저">Churned players with unclosed loop</th><th data-kr="루프를 완결하지 못한 잔존 유저">Active players with unclosed loop</th></tr></thead><tbody><tr><td data-kr="전투 패배 후 해당 콘텐츠 클리어">Lost a fight, then beat that content</td><td data-kr="이탈 유저 103명 중 89명">89 of 103 churned players</td><td data-kr="잔존 유저 74명 중 97명">97 of 74 active players</td></tr><tr><td data-kr="가격 확인 후 구매 완료">Saw a price, then completed the purchase</td><td data-kr="이탈 유저 103명 중 22명">22 of 103 churned players</td><td data-kr="잔존 유저 74명 중 25명">25 of 74 active players</td></tr><tr><td data-kr="오류 발생 후 복구">Hit an error, then recovered</td><td data-kr="이탈 유저 103명 중 7명">7 of 103 churned players</td><td data-kr="잔존 유저 74명 중 6명">6 of 74 active players</td></tr><tr><td data-kr="재화 부족 발생 후 극복">Ran short of something, then got past it</td><td data-kr="이탈 유저 103명 중 3명">3 of 103 churned players</td><td data-kr="잔존 유저 74명 중 5명">5 of 74 active players</td></tr><tr><td data-kr="게임의 제안 확인 후 수행">Game suggested something, then did it</td><td data-kr="이탈 유저 103명 중 2명">2 of 103 churned players</td><td data-kr="잔존 유저 74명 중 1명">1 of 74 active players</td></tr><tr><td data-kr="기능 해금 후 사용">Unlocked a feature, then used it</td><td data-kr="이탈 유저 103명 중 2명">2 of 103 churned players</td><td data-kr="잔존 유저 74명 중 0명">0 of 74 active players</td></tr><tr><td data-kr="레벨 또는 재화 획득 후 소모">Gained a level or currency, then spent it</td><td data-kr="이탈 유저 103명 중 1명">1 of 103 churned players</td><td data-kr="잔존 유저 74명 중 0명">0 of 74 active players</td></tr><tr><td data-kr="소환 후 장착">Summoned something, then equipped it</td><td data-kr="이탈 유저 103명 중 0명">0 of 103 churned players</td><td data-kr="잔존 유저 74명 중 0명">0 of 74 active players</td></tr></tbody></table></div>
+<ul><li data-kr="전투 패배 구간에서 가장 많은 유저가 이탈합니다. 이탈 유저 103명 중 89명이 이 루프를 완결하지 못했습니다. 유저들은 빌드를 변경하지 않은 채 패배한 전투에 반복적으로 재진입합니다. 한 유저는 보스 Mano에게 패배한 후 장비를 조정하지 않고 즉시 재도전했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/UOmlJZCZBIz6jHbXYu5Ds?t=576&quot;&gt;open clip&lt;/a&gt;. 해당 유저는 이후 Mushroom King 보스전에서도 패배한 뒤 즉각 다시 재도전했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/5edz3hQLUZuEzwGf613fk?t=202&quot;&gt;open clip&lt;/a&gt;.">Lost fights leak the most players. 89 of 103 churned players failed to close this loop. Players repeatedly re-enter losing fights without changing their builds. One player failed against boss Mano and retried immediately without adjusting gear <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/UOmlJZCZBIz6jHbXYu5Ds?t=576">open clip</a>. That same player then failed against the Mushroom King boss and retried again at once <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/5edz3hQLUZuEzwGf613fk?t=202">open clip</a>.</li><li data-kr="구매 유도 제안은 유저를 구매자로 전환시키지 못하고 있습니다. 이탈 유저 103명 중 22명은 가격을 확인한 후 이탈했습니다. 한 유저는 특가 상품의 구매 버튼을 눌렀으나 결제를 취소했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/a9FhWj9tyiw3r5VOtrR1Q?t=554&quot;&gt;open clip&lt;/a&gt;. 또 다른 유저는 장비 팝업을 구매 없이 닫았습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/jfD6uwmpyUg9KrAgi5Gs4?t=542&quot;&gt;open clip&lt;/a&gt;. 세 번째 유저는 패키지 안내창을 닫고 자동 전투를 계속 진행했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/KhDD5XZH2rtrpUOpeyxuC?t=14&quot;&gt;open clip&lt;/a&gt;.">Purchase offers fail to convert players into buyers. 22 of 103 churned players walked away after seeing a price. One player tapped the purchase button for a deal but cancelled checkout <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/a9FhWj9tyiw3r5VOtrR1Q?t=554">open clip</a>. Another player dismissed an equipment popup without buying <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/jfD6uwmpyUg9KrAgi5Gs4?t=542">open clip</a>. A third player closed a package prompt and kept auto-fighting <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/KhDD5XZH2rtrpUOpeyxuC?t=14">open clip</a>.</li><li data-kr="잔존 유저 역시 동일한 두 루프를 완결하지 못하는 모습을 보입니다. 잔존 유저 74명 중 25명은 가격을 확인하고 구매하지 않았습니다. 보스 난이도 장벽이 너무 높아지면 잔존 유저 또한 진행을 중단합니다. 한 잔존 유저는 챕터 보스전에서 반복적으로 패배한 뒤 로그아웃 메뉴를 열었습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/VFDo1id9xL1XEHaGiRZhR?t=35&quot;&gt;open clip&lt;/a&gt;.">Active players also leave these same two loops open. 25 of 74 active players saw a price and chose not to buy. When boss walls become too steep, active players also stop. One active player failed repeatedly on a chapter boss and opened the logout menu <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/VFDo1id9xL1XEHaGiRZhR?t=35">open clip</a>.</li><li data-kr="재화 부족과 시스템 오류는 유저를 앱 외부로 이탈시킵니다. 이탈 유저 103명 중 3명은 재화 부족 장벽에서 정체되었습니다. 한 유저는 자원이 소진되자 전투를 멈추고 종료 창을 열었습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/wMrS4XdEqYBFK1EX6705k?t=306&quot;&gt;open clip&lt;/a&gt;. 이탈 유저 103명 중 7명은 기술적 오류를 해결하지 못했습니다. 한 유저는 닉네임 오류가 반복해서 발생하자 방치하다가 절전 모드로 진입했습니다 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/98TJVlWCr6omuvZRFW8xc?t=307&quot;&gt;open clip&lt;/a&gt;.">Resource shortages and system errors push players out of the app. 3 of 103 churned players stalled on currency blocks. One player ran out of funds, stopped fighting, and opened the quit dialog <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/wMrS4XdEqYBFK1EX6705k?t=306">open clip</a>. 7 of 103 churned players could not resolve a technical error. One player saw repeated nickname errors and idled into sleep mode <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/98TJVlWCr6omuvZRFW8xc?t=307">open clip</a>.</li><li data-kr="기본적인 성장 및 소환 루프는 거의 항상 완결됩니다. 이탈 유저 103명 중 소환 후 장비를 장착하지 않은 유저는 0명이었습니다. 이탈 유저 103명 중 2명은 신규 기능 해금을 무시했습니다. 핵심 캐릭터 업그레이드는 전투 장벽에 막히기 전까지 원활하게 진행됩니다.">Basic growth and summon loops close almost every time. 0 of 103 churned players failed to equip gear after a summon. 2 of 103 churned players ignored a new feature unlock. Core character upgrading runs smoothly until a combat wall blocks progress.</li></ul>
+<p data-kr="넥슨은 유저가 즉각 재도전하게 두기보다는 defeat screen에서 캐릭터 성장으로 유도해야 합니다.">Nexon should redirect players to character upgrades on defeat screens rather than letting them retry immediately.</p>
+<div class="kick">2.4</div>
+<h2 id="spending-behaviour" data-kr="결제 행동">Spending behaviour</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;넥슨 측에서 pLTV 점수를 공유하지 않아 예상 생애 가치 그룹 간 비교가 불가능합니다.&lt;/strong&gt; 해당 질문에 답하기 위해서는 넥슨에서 유저 ID와 매칭된 pLTV 점수를 전달해야 합니다."><strong>Predicted lifetime value groups cannot be compared because Nexon did not share the pLTV scores.</strong> Nexon must send player IDs matched with their pLTV scores to answer this question.</p>
+</div></section>
+
+<section class="p3s3 p3sec"><div class="wrap">
+<div class="banner"><div class="kick" data-kr="섹션 3">Section 3</div>
+<h1 data-kr="개발팀이 확인해야 할 문제">Problems for the development team</h1>
+<div class="rule"></div>
+</div>
+<div class="kick">3.1</div>
+<h2 id="problems-worth-fixing" data-kr="개선이 필요한 문제점">Problems worth fixing</h2>
+<div class="rule"></div>
+<p data-kr="&lt;strong&gt;기록된 361명의 유저 전반에서 다양한 기술적 오류와 기획적 마찰로 인해 세션 중단이 발생했습니다.&lt;/strong&gt;"><strong>A collection of technical errors and design friction interrupted sessions across 361 recorded players.</strong></p>
+<h3 id="technical-interruptions" data-kr="기술적 중단 현상">Technical interruptions</h3>
+<ul><li data-kr="361명 중 10명의 유저에게서 계정 연동 및 로그인 시 &quot;(21013)&quot;, &quot;(-10006)&quot;, &quot;authentication error 2001&quot; 등의 메시지와 함께 인증 오류가 발생하며 실패함 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/utJ2JjsH2oLdwBg7W8KkF?t=215&quot;&gt;open clip&lt;/a&gt;.">Account linking and login fail with authentication errors on 10 of 361 players, showing messages like "(21013)", "(-10006)", or "authentication error 2001" <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/utJ2JjsH2oLdwBg7W8KkF?t=215">open clip</a>.</li><li data-kr="361명 중 10명의 유저에게서 세션 만료 팝업 창이 나타난 후 클라이언트가 멈추거나 강제 재시작되며, &quot;工作階段已到期&quot; 또는 &quot;세션이 만료되었습니다.&quot;가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/VTcsDO0IIs5jLwwJwITUR?t=858&quot;&gt;open clip&lt;/a&gt;.">The client freezes or forces a restart after a session expiration dialog on 10 of 361 players, displaying "工作階段已到期" or "세션이 만료되었습니다." <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/VTcsDO0IIs5jLwwJwITUR?t=858">open clip</a>.</li><li data-kr="361명 중 6명의 유저에게서 보상형 동영상 광고 로드에 실패하며, &quot;無法載入廣告&quot;, &quot;The ad has not loaded.&quot;, &quot;광고가 로드되지 않았습니다.&quot; 등의 오류가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/AAmg7qumIamYRBpKhYnNX?t=128&quot;&gt;open clip&lt;/a&gt;.">Rewarded video ads fail to load on 6 of 361 players, showing errors such as "無法載入廣告", "The ad has not loaded.", or "광고가 로드되지 않았습니다." <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/AAmg7qumIamYRBpKhYnNX?t=128">open clip</a>.</li><li data-kr="361명 중 4명의 유저에게서 네트워크 지연 스피너로 인해 전투 또는 로그인 진행이 멈추며, &quot;Waiting for server response&quot; (&quot;正在等待伺服器回應...&quot;)가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/diIsM6kZQLCbZ7tgnabcy?t=4&quot;&gt;open clip&lt;/a&gt;.">Network delay spinners halt combat or login progression on 4 of 361 players, showing "Waiting for server response" ("正在等待伺服器回應...") <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/diIsM6kZQLCbZ7tgnabcy?t=4">open clip</a>.</li><li data-kr="361명 중 3명의 유저에게서 닉네임 입력 시 클라이언트 크래시 오류 6-5001이 발생하거나 &quot;You have not completed the preceding guide quest&quot;가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/Za0YlPRqQmsfxXzktNkln?t=191&quot;&gt;open clip&lt;/a&gt;.">Entering a nickname causes client crash error 6-5001 or shows "You have not completed the preceding guide quest" on 3 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/Za0YlPRqQmsfxXzktNkln?t=191">open clip</a>.</li><li data-kr="361명 중 2명의 유저에게서 전투 검증 실패 및 동기화 오류가 발생하여 penaltyUid mismatch 등의 에러와 함께 세션이 종료됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/wUZfFtFJoN1PXJw76Nb4F?t=280&quot;&gt;open clip&lt;/a&gt;.">Battle verification fails and desynchronizes combat on 2 of 361 players, terminating the session with errors such as penaltyUid mismatch <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/wUZfFtFJoN1PXJw76Nb4F?t=280">open clip</a>.</li><li data-kr="361명 중 2명의 유저에게서 회복량이 최대 스탯을 초과할 때 물약 강화가 차단되며, &quot;회복량이 최대 HP 또는 MP를 초과하여 강화할 수 없습니다.&quot;가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/lOzd2nUStSF6ats0ymRs3?t=522&quot;&gt;open clip&lt;/a&gt;.">Enhancing potions is blocked when recovery exceeds max stats on 2 of 361 players, displaying "회복량이 최대 HP 또는 MP를 초과하여 강화할 수 없습니다." <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/lOzd2nUStSF6ats0ymRs3?t=522">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 1852MB에서 다운로드가 멈춘 채 &quot;Security verification failed. result=1&quot; 오류가 발생하며 게임 실행에 실패함 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/Syz4Un0Dm9epNv28G7agP?t=57&quot;&gt;open clip&lt;/a&gt;.">Launching the game fails on 1 of 361 players due to "Security verification failed. result=1" while stalled at 1852MB <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/Syz4Un0Dm9epNv28G7agP?t=57">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 dark blue geometric loading screen에서 클라이언트가 무한정 멈추는 현상이 발생함 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/AXd3ecu9MjFfb2KzzyJNm?t=157&quot;&gt;open clip&lt;/a&gt;.">The client hangs indefinitely on a dark blue geometric loading screen on 1 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/AXd3ecu9MjFfb2KzzyJNm?t=157">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 보상 수령 팝업이 게임 플레이 도중 99초 동안 멈추는 현상이 발생함 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/TBbSJwPDiECn1sivPaN8T?t=372&quot;&gt;open clip&lt;/a&gt;.">A reward claim popup freezes across gameplay for 99 seconds on 1 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/TBbSJwPDiECn1sivPaN8T?t=372">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 장비 인벤토리가 가득 차 자동 사냥이 완전히 중단됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/tLrMgGjii58Bb3CYjf9K3?t=26&quot;&gt;open clip&lt;/a&gt;.">Automatic hunting stops completely due to a full equipment inventory on 1 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/tLrMgGjii58Bb3CYjf9K3?t=26">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 텍스트 필터링으로 인해 채팅 메시지 전송이 반복적으로 차단되며 &quot;有無法使用的文字。&quot;가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/c9HDxgxpS3yfQVdDKdW7W?t=67&quot;&gt;open clip&lt;/a&gt;.">Sending chat messages is repeatedly blocked by text filtering on 1 of 361 players, displaying "有無法使用的文字。" <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/c9HDxgxpS3yfQVdDKdW7W?t=67">open clip</a>.</li></ul>
+<h3 id="payment-failures" data-kr="결제 실패">Payment failures</h3>
+<ul><li data-kr="361명 중 10명의 유저에게서 상점 구매 및 복원이 실패하며, &quot;Unavailable in store. (errorCode: 9 - 100302)&quot;, &quot;errorCode: 10 - 100107&quot;, &quot;Vendor not initialized&quot; 등의 오류가 표시됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/D9I5QGdwrOlIIWs5DNhRo?t=1&quot;&gt;open clip&lt;/a&gt;.">Store purchases and restores fail on 10 of 361 players, showing errors like "Unavailable in store. (errorCode: 9 - 100302)", "errorCode: 10 - 100107", or "Vendor not initialized" <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/D9I5QGdwrOlIIWs5DNhRo?t=1">open clip</a>.</li><li data-kr="361명 중 2명의 유저에게서 구매 버튼 터치 시 &quot;세션이 만료되었습니다&quot;가 표시되며 세션이 끊기고 강제 재시작됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/GDNoFFeNXiSWIPFQpSK4e?t=328&quot;&gt;open clip&lt;/a&gt;.">Tapping purchase buttons disconnects the session on 2 of 361 players, showing "세션이 만료되었습니다" and forcing a restart <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/GDNoFFeNXiSWIPFQpSK4e?t=328">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 잘못된 &quot;You don't have enough currency&quot; 오류로 인해 오프라인 우편 보상 수령이 차단됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/ZZB9lVq6rDX9LTk2pzHTc?t=787&quot;&gt;open clip&lt;/a&gt;.">Buying offline mail rewards is blocked on 1 of 361 players by an incorrect "You don't have enough currency" error <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/ZZB9lVq6rDX9LTk2pzHTc?t=787">open clip</a>.</li></ul>
+<h3 id="design-friction" data-kr="기획적 마찰">Design friction</h3>
+<ul><li data-kr="361명 중 6명의 유저에게서 설정 내 닉네임 변경이 가이드 퀘스트로 인해 차단되거나, 창을 열기만 해도 Guide Quest 72가 완료되는 현상이 발생함 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/276GD2nmjTQ30vStSMfDg?t=294&quot;&gt;open clip&lt;/a&gt;.">Changing nicknames in settings is blocked by guide quests on 6 of 361 players, or completes Guide Quest 72 merely by opening the window <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/276GD2nmjTQ30vStSMfDg?t=294">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 채팅 내 귓속말 전송이 레벨 40 제한으로 인해 차단됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/0ad9gc2SozYhwLB3ApXdR?t=127&quot;&gt;open clip&lt;/a&gt;.">Sending direct whisper messages in chat is blocked behind a Level 40 requirement on 1 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/0ad9gc2SozYhwLB3ApXdR?t=127">open clip</a>.</li><li data-kr="361명 중 1명의 유저에게서 Stage 2-2 보스 전투 시 Slime 스프라이트가 표시되지만 Mano의 이름과 체력 바가 노출됨 &lt;a class=&quot;anch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://6labs.ai/studio/sessions/details/YNwcXr3oN7LscBvG7P4Bv?t=106&quot;&gt;open clip&lt;/a&gt;.">The Stage 2-2 boss encounter displays a Slime sprite but shows Mano's name and health bar on 1 of 361 players <a class="anch" target="_blank" rel="noopener" href="https://6labs.ai/studio/sessions/details/YNwcXr3oN7LscBvG7P4Bv?t=106">open clip</a>.</li></ul>
+<p data-kr="넥슨은 상점 초기화 오류를 수정하고 구매 및 다운로드 도중 세션 만료 팝업이 노출되지 않도록 제어할 수 있습니다.">Nexon could fix store initialization and suppress session expiration popups during purchases and downloads.</p>
+</div></section>
+
+  </main>
+
+  <footer>
+  <div class="fgrid">
+    <div>
+      <div class="flab" data-kr="본 리포트 개요">This report</div>
+      <p data-kr="<b>리텐션 및 이탈</b> &amp;mdash; MapleStory: Idle RPG 파일럿 프로젝트의 4개 카테고리 리포트 중 하나입니다."><b>Retention and churn</b> &mdash; one of four category reports from the MapleStory: Idle RPG pilot.</p>
+      <p class="fmeta" data-kr="녹화된 플레이어 세션을 분석한 인사이트입니다. 모든 분석 내용은 근거가 되는 녹화 영상과 링크로 연결되어 있습니다.">Findings read from recorded player sessions. Every claim links to the recording it rests on.</p>
+    </div>
+    <div>
+      <div class="flab" data-kr="기타 리포트">Other reports</div>
+      <ul class="flinks"><li data-kr="<a href=&quot;index.html&quot;><span class=&quot;arrow&quot;>&amp;rarr;</span>메인 리포트</a>"><a href="index.html"><span class="arrow">&rarr;</span>Main report</a></li><li data-kr="<a href=&quot;retention-churn.html&quot;><span class=&quot;arrow&quot;>&amp;rarr;</span>리텐션 및 이탈</a>"><a href="retention-churn.html"><span class="arrow">&rarr;</span>Retention and churn</a></li><li data-kr="<a href=&quot;retention-churn-v2.html&quot;><span class=&quot;arrow&quot;>&amp;rarr;</span>리텐션 및 이탈 &mdash; 여정 기반</a>"><a href="retention-churn-v2.html"><span class="arrow">&rarr;</span>Retention and churn, journey edition</a></li><li data-kr="<a href=&quot;chat-moderation.html&quot;><span class=&quot;arrow&quot;>&amp;rarr;</span>채팅 모니터링</a>"><a href="chat-moderation.html"><span class="arrow">&rarr;</span>Chat moderation</a></li><li data-kr="<a href=&quot;monetization-ux.html&quot;><span class=&quot;arrow&quot;>&amp;rarr;</span>기술적 이슈 및 UX 마찰 요소</a>"><a href="monetization-ux.html"><span class="arrow">&rarr;</span>Technical issues and UX friction</a></li></ul>
+    </div>
+  </div>
+  <div class="fbot"><span>Nexon &ldquo;MapleStory: Idle RPG&rdquo; pilot &middot; Aug 31 &ndash; Sep 8, 2026</span><img src="6labs-logo.png" alt="6labs.ai"></div>
+</footer>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="i18n">
+(function(){
+  var KEY='6labs-report-lang';
+  var els=[].slice.call(document.querySelectorAll('[data-kr]'));
+  els.forEach(function(e){ e.setAttribute('data-en', e.innerHTML); });
+  function set(l){
+    els.forEach(function(e){
+      var v = l==='ko' ? e.getAttribute('data-kr') : e.getAttribute('data-en');
+      if(v!==null) e.innerHTML = v;
+    });
+    document.documentElement.lang = (l==='ko') ? 'ko' : 'en';
+    document.body.classList.toggle('ko', l==='ko');
+    [].forEach.call(document.querySelectorAll('.langsw button'), function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang')===l));
+    });
+    try{ localStorage.setItem(KEY,l); }catch(err){}
+    document.dispatchEvent(new CustomEvent('langchange',{detail:l}));
+  }
+  [].forEach.call(document.querySelectorAll('.langsw button'), function(b){
+    b.addEventListener('click', function(){ set(b.getAttribute('data-lang')); });
+  });
+  var saved=null; try{ saved=localStorage.getItem(KEY); }catch(err){}
+  set(saved==='ko' ? 'ko' : 'en');
+})();
+</script>
+<script id="lb">
+(function(){
+  var COLLECT = true;
+  var figs = [].slice.call(document.querySelectorAll('figure')).filter(function(f){
+    return f.querySelector('img');
+  });
+  if(!figs.length) return;
+
+  var lb = document.createElement('div');
+  lb.className = 'lb';
+  lb.innerHTML = '<div class="lb-count"></div>' +
+    '<button class="lb-x" aria-label="Close">&times;</button>' +
+    '<button class="lb-prev" aria-label="Previous">&#8249;</button>' +
+    '<button class="lb-next" aria-label="Next">&#8250;</button>' +
+    '<img alt=""><div class="lb-cap"></div>';
+  document.body.appendChild(lb);
+  var imgEl = lb.querySelector('img'),
+      capEl = lb.querySelector('.lb-cap'),
+      cntEl = lb.querySelector('.lb-count'),
+      items = [], i = 0;
+
+  function peers(n){
+    var g = items[n].g, out = [];
+    items.forEach(function(it, k){ if(it.g === g) out.push(k); });
+    return out;
+  }
+  function show(n){
+    i = (n + items.length) % items.length;
+    imgEl.src = items[i].src;
+    // read the caption from the page each time, so it follows the language switch
+    var c = items[i].capEl;
+    capEl.innerHTML = c ? c.innerHTML : (items[i].cap || '');
+    var p = peers(i);
+    cntEl.textContent = (p.indexOf(i) + 1) + ' of ' + p.length + ' in this section';
+  }
+  function step(d){ var p = peers(i), at = p.indexOf(i); show(p[(at + d + p.length) % p.length]); }
+  function open(n){ show(n); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; imgEl.src = ''; }
+
+  // inline mode: figures stay at full size in the prose, click opens them large
+  if(!COLLECT){
+    figs.forEach(function(f){
+      var img = f.querySelector('img'), cap = f.querySelector('figcaption');
+      var idx = items.length;
+      items.push({ src: img.getAttribute('src'), cap: cap ? cap.innerHTML : '', g: 'page' });
+      img.style.cursor = 'zoom-in';
+      img.setAttribute('tabindex','0');
+      img.setAttribute('role','button');
+      img.addEventListener('click', function(){ open(idx); });
+      img.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(idx); }
+      });
+    });
+  }
+
+  // collect figures per section, hide them inline, build one strip per section
+  var bySec = new Map();
+  if(COLLECT) figs.forEach(function(f){
+    var g = f.previousHeading || (function(){ var n=f, h=null;
+      while(n){ var p=n.previousElementSibling;
+        while(p){ if(/^H[12]$/.test(p.tagName)){ h=p; break; } p=p.previousElementSibling; }
+        if(h) break; n=n.parentElement;
+      } return h || f.closest('section') || document.body; })();
+    var img = f.querySelector('img'), cap = f.querySelector('figcaption');
+    if(!bySec.has(g)) bySec.set(g, []);
+    bySec.get(g).push({ src: img.getAttribute('src'), cap: cap ? cap.innerHTML : '', g: g, fig: f });
+    f.classList.add('lb-src');
+  });
+  bySec.forEach(function(list, sec){
+    var box = document.createElement('div'); box.className = 'evbox';
+    var lab = document.createElement('div'); lab.className = 'evlab';
+    lab.textContent = 'Evidence \u00b7 ' + list.length + (list.length === 1 ? ' frame' : ' frames');
+    var strip = document.createElement('div'); strip.className = 'evstrip';
+    list.forEach(function(it, k){
+      var idx = items.length; items.push(it);
+      var t = document.createElement('div');
+      t.className = 'evtile';
+      t.setAttribute('role', 'button');
+      t.setAttribute('tabindex', '0');
+      t.setAttribute('aria-label', 'Open evidence frame ' + (k + 1));
+      var im = document.createElement('img'); im.src = it.src; im.alt = '';
+      var n = document.createElement('span'); n.className = 'num'; n.textContent = k + 1;
+      t.appendChild(im); t.appendChild(n);
+      t.addEventListener('click', function(){ open(idx); });
+      t.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(idx); }
+      });
+      strip.appendChild(t);
+    });
+    box.appendChild(lab); box.appendChild(strip);
+    var anchor = list[list.length-1].fig;
+    if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(box, anchor.nextSibling);
+    else (sec.appendChild ? sec : document.body).appendChild(box);
+  });
+
+  lb.querySelector('.lb-x').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  lb.querySelector('.lb-next').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === imgEl) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') step(-1);
+    if(e.key === 'ArrowRight') step(1);
+  });
+  var x0 = null;
+  lb.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 45) step(dx < 0 ? 1 : -1);
+    x0 = null;
+  }, {passive:true});
+})();
+</script>
+</body></html>
