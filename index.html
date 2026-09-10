@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nexon Idle RPG Pilot Report</title>
+<title>MapleStory: Idle RPG Pilot Report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
@@ -210,17 +210,10 @@ body.ko .langsw button{font-family:"Noto Sans KR",Inter,sans-serif}
     <div class="langsw" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ko" aria-pressed="false">KR</button></div>
   </div>
 
-  <div class="brandbar"><div class="eyebrow" data-kr="MapleStory: Idle RPG &amp;times; Oracle">MapleStory: Idle RPG &times; Oracle</div>
-    
-    
-  </div>
-
   <div class="hero">
-    <h1 data-kr="모든 유저를 전수 집계하고,<br><span class=&quot;hl&quot;>모든 행동의 원인을 직접 확인합니다.</span>">Every Player Counted.<br><span class="hl">Every Reason Seen.</span></h1>
-    <div class="meta" data-kr="
-      <div><b>Pilot report &amp;middot; Phase 2</b> &amp;nbsp;&amp;middot;&amp;nbsp; from 31 August 2026 &amp;nbsp;&amp;middot;&amp;nbsp; Nexon Snowflake + recorded gameplay</div>
-    ">
-      <div><b>Pilot report &middot; Phase 2</b> &nbsp;&middot;&nbsp; from 31 August 2026 &nbsp;&middot;&nbsp; Nexon Snowflake + recorded gameplay</div>
+    <h1 data-kr="MapleStory: Idle RPG 파일럿 리포트">MapleStory: Idle RPG Pilot Report</h1>
+    <div class="meta" data-kr="<div><b>Phase 2</b> &amp;nbsp;&amp;middot;&amp;nbsp; 2026년 8월 31일 ~ 2026년 9월 8일 &amp;nbsp;&amp;middot;&amp;nbsp; Nexon Snowflake + 녹화된 게임플레이</div>">
+      <div><b>Phase 2</b> &nbsp;&middot;&nbsp; from 31 Aug&rsquo;2026 till 8 Sep&rsquo;2026 &nbsp;&middot;&nbsp; Nexon Snowflake + recorded gameplay</div>
     </div>
   </div>
 
@@ -233,55 +226,9 @@ body.ko .langsw button{font-family:"Noto Sans KR",Inter,sans-serif}
   </div>
 
   <main>
-    <section>
-      <div class="kick" data-kr="핵심 요약">Executive summary</div>
-      <h2 data-kr="Oracle은 2주 만에 &amp;ldquo;샘플 표본 분석&amp;rdquo;을 넘어 &amp;ldquo;모든 유저를 전수 집계하고 그 원인을 직접 확인하는 분석&amp;rdquo;으로 발전했습니다">In two weeks, Oracle went from &ldquo;analysis of a sample&rdquo; to &ldquo;counting everyone, and seeing why&rdquo;</h2><div class="rule"></div>
-      <div class="cols">
-        <div class="col">
-          <h3 data-kr="모든 유저를 전수 집계합니다">It counts everyone</h3>
-          <p data-kr="8,119명의 첫 결제 유저, 38.3M건의 결제 시도, 104K명의 이탈 유저. Nexon의 실제 모수 데이터를 기반으로 분석한 결과입니다.">8,119 first payers, 38.3M purchase attempts, 104K churned players. Answers computed on
-          Nexon&rsquo;s actual populations.</p>
-        </div>
-        <div class="col">
-          <h3 data-kr="행동의 원인을 시각적으로 확인합니다">It sees the why</h3>
-          <p data-kr="숫자 뒤에 숨은 실제 화면을 확인합니다. 첫 결제 직전 노출된 팝업, 이탈 직전의 보스전, 결제 실패 시 발생한 에러 팝업까지 직접 파악할 수 있습니다.">The actual screens behind the numbers. The popup right before a first payment, the boss
-          fight before a churn, the error dialog behind a failed purchase.</p>
-        </div>
-        <div class="col">
-          <h3 data-kr="데이터 정합성까지 함께 검증합니다">It checks the data too</h3>
-          <p data-kr="분석 과정에서 발견된 텔레메트리 및 스키마 이슈를 정리하여, 데이터 팀이 직접 확인하고 대응할 수 있도록 제공합니다.">Telemetry and schema issues discovered during analysis, packaged so the data team can
-          verify and act on them directly.</p>
-        </div>
-      </div>
-    </section>
+    
 
-    <section>
-      <div class="kick" data-kr="작동 방식">How it works</div>
-      <h2 data-kr="모든 분석 결과는 Nexon의 데이터에서 출발하여 실제 인게임 화면으로 검증됩니다">Every answer starts from Nexon&rsquo;s data and ends on an actual screen</h2><div class="rule"></div>
-      <div class="steps">
-        <div class="step">
-          <div class="badge">1</div>
-          <div>
-            <div class="src">Nexon warehouse &middot; quantitative</div>
-            <h3 data-kr="전수 데이터 집계">Count everyone</h3>
-            <p data-kr="Nexon 데이터 팀이 정의한 테이블과 기준에 따라 전수(Full-population) 연산을 수행합니다. 매출, 결제 건수, 이탈 세그먼트, 로열티, pLTV(예상 LTV) 등을 산출하며, 결과 화면에 &amp;ldquo;분석 대상 모수&amp;rdquo;를 명확히 표기합니다.">Full-population computation on the tables and definitions Nexon&rsquo;s data team built.
-            Revenue, payments, churn segments, loyalty, predicted LTV, with &ldquo;this is your
-            population&rdquo; stated on the result.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="badge">2</div>
-          <div>
-            <div class="src">Recorded gameplay &middot; qualitative</div>
-            <h3 data-kr="원인 직접 확인하기">See the reason</h3>
-            <p data-kr="1단계에서 식별된 코호트의 실제 플레이 세션을 리플레이하여 화면상의 직접적인 원인을 확인합니다. 오류 알림창, 패키지 제안 팝업, 채팅, UI 인터랙션 마찰 등 데이터 로그에는 절대 남지 않는 영역을 파악합니다.">Replays actual sessions from the cohort stage 1 identified, to confirm the on-screen
-            cause. Error dialogs, offer popups, chat, UI friction. The layer that never lands in a log.</p>
-          </div>
-        </div>
-      </div>
-      <p class="foot" data-kr="파일럿 기간 동안의 모든 질의는 자연어로 처리되었습니다. 테이블 선택부터 쿼리 작성, 데이터 검증까지, 분석가가 데이터 웨어하우스에 직접 접근할 필요가 전혀 없었습니다.">Every question in the pilot was handled in natural language. Table selection,
-      query writing, validation. At no point did an analyst touch the warehouse directly.</p>
-    </section>
+    
 
     <section>
       <div class="kick" data-kr="핵심 발견 사항">Findings</div>
