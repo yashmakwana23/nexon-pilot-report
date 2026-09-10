@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Retention &amp; Churn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -257,7 +257,7 @@ figure.lb-src{display:none}
 <div class="navbar">
     <img class="logo" src="6labs-logo.png" alt="6labs.ai">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Pilot report</a><span class="sep">/</span><span class="here" data-kr="리텐션 및 이탈 분석">Retention and churn</span></nav>
-    <div class="langsw" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ko" aria-pressed="false">KR</button></div>
+    <div class="langsw" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="false">EN</button><button type="button" data-lang="ko" aria-pressed="true">KR</button></div>
   </div>
 
   <div class="hero">
@@ -410,7 +410,7 @@ figure.lb-src{display:none}
     b.addEventListener('click', function(){ set(b.getAttribute('data-lang')); });
   });
   var saved=null; try{ saved=localStorage.getItem(KEY); }catch(err){}
-  set(saved==='ko' ? 'ko' : 'en');
+  set(saved==='en' ? 'en' : 'ko');
 })();
 </script>
 <script id="lb">
